@@ -1,10 +1,8 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
 import type { MessageUsageType } from "@/types/chat/chatMessageType";
 import type { PublicModelType } from "@/types/chat/publicModelType";
 
-import { contextWarningLevel, formatUsd } from "../helpers";
+import { contextWarningLevel, formatUsageTotalsLine } from "../helpers";
 
 /**
  * Running token totals and the context-window warning for the selected model.
@@ -29,15 +27,17 @@ export function UsagePanel({
   return (
     <div className="flex flex-col gap-2 px-6 sm:px-10">
       <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground">
-        <p className="tracking-wide">
-          {totals.inputTokens.toLocaleString()} in · {totals.outputTokens.toLocaleString()} out ·{" "}
-          {formatUsd(totals.costUsd)}
-        </p>
+        <p className="tracking-wide">{formatUsageTotalsLine(totals)}</p>
         <div className="flex gap-1">
           <Button type="button" variant="ghost" size="sm" onClick={onExportCsv}>
             CSV
           </Button>
-          <Button type="button" variant="ghost" size="sm" onClick={onExportJson}>
+          <Button
+            type="button"
+            variant="ghost"
+            size="sm"
+            onClick={onExportJson}
+          >
             JSON
           </Button>
         </div>
@@ -50,8 +50,8 @@ export function UsagePanel({
               : "rounded-2xl bg-amber-100 px-4 py-3 text-sm text-amber-950 shadow-sm"
           }
         >
-          About {percent}% of the {model?.providerLabel} context window is in use. Start a new
-          conversation before the next reply is cut off.
+          About {percent}% of the {model?.providerLabel} context window is in
+          use. Start a new conversation before the next reply is cut off.
         </p>
       ) : null}
     </div>

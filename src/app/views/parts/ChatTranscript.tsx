@@ -1,5 +1,3 @@
-"use client";
-
 import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 
@@ -8,7 +6,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import type { ChatMessageType } from "@/types/chat/chatMessageType";
 import type { PublicModelType } from "@/types/chat/publicModelType";
 
-import { formatUsd } from "../helpers";
+import { formatUsageTotalsLine } from "../helpers";
 import { CitationList } from "./CitationList";
 
 const PROMPTS = [
@@ -34,7 +32,10 @@ export function ChatTranscript({
   const endRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    endRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+    endRef.current?.scrollIntoView({
+      behavior: streaming ? "auto" : "smooth",
+      block: "end",
+    });
   }, [messages, streaming]);
 
   return (
@@ -104,9 +105,7 @@ export function ChatTranscript({
               {message.role === "assistant" && message.modelId ? (
                 <p className="mt-3 text-xs tracking-wide text-muted-foreground">
                   {provider?.providerLabel ?? message.modelId}
-                  {message.usage
-                    ? ` · ${message.usage.inputTokens} in · ${message.usage.outputTokens} out · ${formatUsd(message.usage.costUsd)}`
-                    : ""}
+                  {message.usage ? ` · ${formatUsageTotalsLine(message.usage)}` : ""}
                 </p>
               ) : null}
               {message.citations && message.citations.length > 0 ? (

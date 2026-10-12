@@ -2,6 +2,7 @@ import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 
 import { chunkMarkdown } from "@/lib/knowledge/chunkMarkdown";
+import { KNOWLEDGE_BASE_DIR } from "@/lib/knowledge/shared";
 import type { KnowledgeSectionType } from "@/types/knowledge/knowledgeSectionType";
 
 /**
@@ -24,9 +25,7 @@ let cachedSections: KnowledgeSectionType[] | null = null;
  */
 export function getKnowledgeSections(): KnowledgeSectionType[] {
   if (!cachedSections) {
-    cachedSections = loadKnowledgeSections(
-      join(process.cwd(), "nimbusstack-knowledge-base"),
-    );
+    cachedSections = loadKnowledgeSections(KNOWLEDGE_BASE_DIR);
   }
   return cachedSections;
 }

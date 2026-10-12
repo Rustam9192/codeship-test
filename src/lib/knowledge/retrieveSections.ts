@@ -1,9 +1,8 @@
+import { PRODUCT_IDS } from "@/lib/knowledge/shared";
 import type {
   KnowledgeSectionType,
   ProductIdType,
 } from "@/types/knowledge/knowledgeSectionType";
-
-const PRODUCT_IDS: ProductIdType[] = ["ledger", "pulse", "relay", "vault"];
 
 const STOP_WORDS = new Set([
   "what",

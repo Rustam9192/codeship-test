@@ -1,4 +1,7 @@
-import type { ChatMessageType } from "@/types/chat/chatMessageType";
+import type {
+  ChatMessageType,
+  MessageUsageType,
+} from "@/types/chat/chatMessageType";
 
 export function estimateContextTokens(messages: ChatMessageType[]): number {
   const characters = messages.reduce((sum, message) => sum + message.content.length, 0);
@@ -14,6 +17,11 @@ export function contextWarningLevel(ratio: number): "amber" | "red" | null {
 export function formatUsd(value: number): string {
   if (value > 0 && value < 0.01) return `$${value.toFixed(4)}`;
   return `$${value.toFixed(2)}`;
+}
+
+/** Token and cost line shared by the transcript footer and usage panel. */
+export function formatUsageTotalsLine(usage: MessageUsageType): string {
+  return `${usage.inputTokens.toLocaleString()} in · ${usage.outputTokens.toLocaleString()} out · ${formatUsd(usage.costUsd)}`;
 }
 
 export function sessionUsageCsv(messages: ChatMessageType[]): string {

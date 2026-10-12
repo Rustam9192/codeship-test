@@ -1,10 +1,10 @@
+import { PRODUCT_IDS } from "@/lib/knowledge/shared";
 import type {
   KnowledgeSectionType,
   ProductIdType,
 } from "@/types/knowledge/knowledgeSectionType";
 
 const HEADING_PATTERN = /^(#{1,6})\s+(.+?)\s*#*$/;
-const PRODUCT_IDS: ProductIdType[] = ["ledger", "pulse", "relay", "vault"];
 
 /**
  * Splits one markdown file into heading sections and one section per table row.

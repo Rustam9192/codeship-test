@@ -1,13 +1,10 @@
-import { join } from "node:path";
-
 import { describe, expect, it } from "vitest";
 
 import { loadKnowledgeSections } from "@/lib/knowledge/loadKnowledge";
 import { retrieveSections } from "@/lib/knowledge/retrieveSections";
+import { KNOWLEDGE_BASE_DIR } from "@/lib/knowledge/shared";
 
-const sections = loadKnowledgeSections(
-  join(process.cwd(), "nimbusstack-knowledge-base"),
-);
+const sections = loadKnowledgeSections(KNOWLEDGE_BASE_DIR);
 
 describe("retrieveSections", () => {
   it("ranks the Relay 4.2 release notes first", () => {

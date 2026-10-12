@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Select,
   SelectContent,
@@ -45,10 +43,16 @@ export function ModelPicker({
       </SelectTrigger>
       <SelectContent>
         {models.map((model) => (
-          <SelectItem key={model.id} value={model.id} disabled={!model.available}>
+          <SelectItem
+            key={model.id}
+            value={model.id}
+            disabled={!model.available}
+          >
             <span className="flex flex-col items-start">
               <span>{model.providerLabel}</span>
-              <span className="text-xs text-muted-foreground">{model.description}</span>
+              <span className="text-xs text-muted-foreground">
+                {model.description}
+              </span>
             </span>
           </SelectItem>
         ))}

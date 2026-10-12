@@ -1,5 +1,3 @@
-"use client";
-
 import type { CitationType } from "@/types/chat/chatMessageType";
 
 /**
@@ -8,7 +6,9 @@ import type { CitationType } from "@/types/chat/chatMessageType";
 export function CitationList({ citations }: { citations: CitationType[] }) {
   return (
     <section className="mt-4 border-t border-foreground/10 pt-3">
-      <p className="text-[11px] tracking-[0.22em] text-muted-foreground uppercase">Sources</p>
+      <p className="text-[11px] tracking-[0.22em] text-muted-foreground uppercase">
+        Sources
+      </p>
       <ol className="mt-2 flex flex-col gap-3">
         {citations.map((citation, index) => (
           <li key={`${citation.fileName}-${citation.title}-${index}`}>
