@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 
 import {
+  activeConversation,
   addUserMessage,
   appendAssistantDelta,
   beginAssistantMessage,
@@ -54,8 +55,8 @@ export function useChatSession() {
     dispatch(beginAssistantMessage({ id: crypto.randomUUID() }));
 
     const snapshot = store.getState().session;
-    const messages = snapshot.messages
-      .filter((message) => message.role === "user" || message.content.trim())
+    const messages = activeConversation(snapshot)
+      .messages.filter((message) => message.role === "user" || message.content.trim())
       .map((message) => ({ role: message.role, content: message.content }));
 
     try {

@@ -3,7 +3,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { sessionReducer } from "@/lib/redux/slices/session/sessionSlice";
 
 /**
- * Session store for the current browser tab. Nothing here is persisted.
+ * Session store for the current browser tab. The chat list is saved separately.
  */
 export function makeStore() {
   return configureStore({

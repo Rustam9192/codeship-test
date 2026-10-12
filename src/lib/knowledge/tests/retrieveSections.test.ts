@@ -50,7 +50,9 @@ describe("retrieveSections", () => {
     expect(
       hits.some(
         (hit) =>
-          hit.fileName === "security-overview.md" && /Vault/.test(hit.body) && /Enterprise/.test(hit.body),
+          hit.fileName === "security-overview.md" &&
+          /Vault/.test(hit.body) &&
+          /Enterprise/.test(hit.body),
       ),
     ).toBe(true);
   });

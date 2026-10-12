@@ -3,11 +3,20 @@ import type { PublicModelType } from "@/types/chat/publicModelType";
 
 export type SessionStatusType = "idle" | "streaming" | "error";
 
-export type SessionStateType = {
+export type ConversationType = {
+  id: string;
+  title: string;
   messages: ChatMessageType[];
-  selectedModelId: string;
-  models: PublicModelType[];
   totals: MessageUsageType;
-  status: SessionStatusType;
   errorMessage: string | null;
 };
+
+export type SessionStateType = {
+  conversations: ConversationType[];
+  activeConversationId: string;
+  selectedModelId: string;
+  models: PublicModelType[];
+  status: SessionStatusType;
+};
+
+export const NEW_CONVERSATION_TITLE = "New conversation";
